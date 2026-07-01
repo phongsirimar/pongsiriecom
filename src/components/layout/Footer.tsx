@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 font-bold text-primary-600 dark:text-primary-400">
               <Store className="h-5 w-5" />
-              <span>ShopNext</span>
+              <span>ShopTest</span>
             </Link>
             <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
               {t('tagline')}

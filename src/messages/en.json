@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "ShopNext",
+    "title": "ShopTest",
     "description": "Modern e-commerce built with Next.js, TypeScript & Tailwind CSS"
   },
   "nav": {
@@ -38,7 +38,7 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     },
-    "copyright": "© {year} ShopNext. Built with Next.js, TypeScript & Tailwind CSS."
+    "copyright": "© {year} ShopTest. Built with Next.js, TypeScript & Tailwind CSS."
   },
   "products": {
     "title": "Products",

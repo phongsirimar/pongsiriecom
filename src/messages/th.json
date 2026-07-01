@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "ShopNext",
+    "title": "ShopTest",
     "description": "อีคอมเมิร์ซสมัยใหม่ที่สร้างด้วย Next.js, TypeScript และ Tailwind CSS"
   },
   "nav": {
@@ -38,7 +38,7 @@
       "privacyPolicy": "นโยบายความเป็นส่วนตัว",
       "termsOfService": "ข้อกำหนดการใช้งาน"
     },
-    "copyright": "© {year} ShopNext สร้างด้วย Next.js, TypeScript และ Tailwind CSS"
+    "copyright": "© {year} ShopTest สร้างด้วย Next.js, TypeScript และ Tailwind CSS"
   },
   "products": {
     "title": "สินค้า",

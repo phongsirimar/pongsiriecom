@@ -49,7 +49,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-bold text-primary-600 dark:text-primary-400">
             <Store className="h-6 w-6" />
-            <span className="text-lg">ShopNext</span>
+            <span className="text-lg">ShopTest</span>
           </Link>
 
           {/* Desktop nav */}
