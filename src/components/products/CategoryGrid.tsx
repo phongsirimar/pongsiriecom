@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useCategories } from '@/hooks/useProducts';
 import { ChevronLeft, ChevronRight, LayoutGrid } from 'lucide-react';
@@ -17,7 +17,7 @@ export default function CategoryGrid({ value, onChange }: CategoryGridProps) {
   const { data: categories, isLoading } = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   const updateScrollState = () => {
     const el = scrollerRef.current;
@@ -25,6 +25,17 @@ export default function CategoryGrid({ value, onChange }: CategoryGridProps) {
     setCanScrollLeft(el.scrollLeft > 4);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
   };
+
+  // Recompute once categories render and whenever the viewport is resized,
+  // since the arrows should only show when the row actually overflows.
+  useEffect(() => {
+    updateScrollState();
+    const el = scrollerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(updateScrollState);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isLoading, categories]);
 
   const scrollBy = (dir: 1 | -1) => {
     scrollerRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
