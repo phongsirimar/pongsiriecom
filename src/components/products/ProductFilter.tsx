@@ -1,9 +1,8 @@
 'use client';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { FilterState } from '@/types';
-import { useCategories } from '@/hooks/useProducts';
 import { Star, SlidersHorizontal, X } from 'lucide-react';
-import { cn, translateCategory } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 interface ProductFilterProps {
   filter: FilterState;
@@ -13,8 +12,6 @@ interface ProductFilterProps {
 
 export default function ProductFilter({ filter, onChange, onClose }: ProductFilterProps) {
   const t = useTranslations('products');
-  const locale = useLocale();
-  const { data: categories, isLoading } = useCategories();
 
   const PRICE_RANGES = [
     { label: t('anyPrice'), min: 0, max: 0 },
@@ -57,46 +54,6 @@ export default function ProductFilter({ filter, onChange, onClose }: ProductFilt
             </button>
           )}
         </div>
-      </div>
-
-      {/* Category */}
-      <div>
-        <h3 className="mb-3 text-sm font-semibold text-slate-700 dark:text-slate-300">{t('category')}</h3>
-        {isLoading ? (
-          <div className="space-y-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-8 animate-pulse rounded-lg bg-slate-200 dark:bg-slate-700" />
-            ))}
-          </div>
-        ) : (
-          <div className="space-y-1 max-h-52 overflow-y-auto pr-1">
-            <button
-              onClick={() => set({ category: '' })}
-              className={cn(
-                'block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors capitalize',
-                !filter.category
-                  ? 'bg-primary-50 font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
-                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700'
-              )}
-            >
-              {t('allCategories')}
-            </button>
-            {categories?.map((cat) => (
-              <button
-                key={cat.slug}
-                onClick={() => set({ category: cat.slug })}
-                className={cn(
-                  'block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors capitalize',
-                  filter.category === cat.slug
-                    ? 'bg-primary-50 font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
-                    : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700'
-                )}
-              >
-                {translateCategory(cat.slug, locale)}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Price range */}

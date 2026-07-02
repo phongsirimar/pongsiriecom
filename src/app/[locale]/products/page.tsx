@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useProducts } from '@/hooks/useProducts';
 import { FilterState, SortOption } from '@/types';
 import SearchBar from '@/components/products/SearchBar';
+import CategoryGrid from '@/components/products/CategoryGrid';
 import ProductFilter from '@/components/products/ProductFilter';
 import ProductSort from '@/components/products/ProductSort';
 import ProductGrid from '@/components/products/ProductGrid';
@@ -48,6 +49,8 @@ export default function ProductsPage() {
         </div>
         <SearchBar value={filter.search} onChange={handleSearch} />
       </div>
+
+      <CategoryGrid value={filter.category} onChange={(category) => handleFilter({ ...filter, category })} />
 
       <div className="flex gap-6">
         {/* Desktop sidebar */}
